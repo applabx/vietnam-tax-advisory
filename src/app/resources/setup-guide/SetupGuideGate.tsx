@@ -53,7 +53,12 @@ export default function SetupGuideGate() {
           </a>
         </div>
       ) : (
-        <form onSubmit={onSubmit} className="space-y-4">
+        <form
+          onSubmit={onSubmit}
+          method="POST"
+          action={process.env.NEXT_PUBLIC_LEAD_WEBHOOK || process.env.NEXT_PUBLIC_CONTACT_WEBHOOK || "#"}
+          className="space-y-4"
+        >
           <h3 className="font-serif text-[24px] text-navy mb-2">Get the guide</h3>
           <p className="text-[13px] text-ink-muted leading-[1.7] mb-4">
             Step-by-step playbook, free PDF. We&apos;ll email you the download link.

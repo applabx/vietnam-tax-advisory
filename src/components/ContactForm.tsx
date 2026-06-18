@@ -92,12 +92,18 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-5">
+    <form
+      onSubmit={onSubmit}
+      method="POST"
+      action={process.env.NEXT_PUBLIC_CONTACT_WEBHOOK || "#"}
+      className="space-y-5"
+    >
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <label className="block text-[11px] tracking-[0.14em] uppercase text-white/40 mb-2">First name *</label>
           <input
             type="text"
+            name="firstName"
             required
             value={form.firstName}
             onChange={update("firstName")}
@@ -109,6 +115,7 @@ export default function ContactForm() {
           <label className="block text-[11px] tracking-[0.14em] uppercase text-white/40 mb-2">Last name *</label>
           <input
             type="text"
+            name="lastName"
             required
             value={form.lastName}
             onChange={update("lastName")}
@@ -121,6 +128,7 @@ export default function ContactForm() {
         <label className="block text-[11px] tracking-[0.14em] uppercase text-white/40 mb-2">Business email *</label>
         <input
           type="email"
+          name="email"
           required
           value={form.email}
           onChange={update("email")}
@@ -132,6 +140,7 @@ export default function ContactForm() {
         <label className="block text-[11px] tracking-[0.14em] uppercase text-white/40 mb-2">Phone / WhatsApp</label>
         <input
           type="tel"
+          name="phone"
           value={form.phone}
           onChange={update("phone")}
           className="w-full bg-white/5 border border-gold/20 focus:border-gold/60 rounded-sm px-4 py-3.5 text-[14px] text-white outline-none transition-colors"
@@ -143,6 +152,7 @@ export default function ContactForm() {
           <label className="block text-[11px] tracking-[0.14em] uppercase text-white/40 mb-2">Company *</label>
           <input
             type="text"
+            name="company"
             required
             value={form.company}
             onChange={update("company")}
@@ -154,6 +164,7 @@ export default function ContactForm() {
           <label className="block text-[11px] tracking-[0.14em] uppercase text-white/40 mb-2">Country of origin</label>
           <input
             type="text"
+            name="country"
             value={form.country}
             onChange={update("country")}
             className="w-full bg-white/5 border border-gold/20 focus:border-gold/60 rounded-sm px-4 py-3.5 text-[14px] text-white outline-none transition-colors"
@@ -164,6 +175,7 @@ export default function ContactForm() {
       <div>
         <label className="block text-[11px] tracking-[0.14em] uppercase text-white/40 mb-2">Service of interest *</label>
         <select
+          name="service"
           required
           value={form.service}
           onChange={update("service")}
@@ -178,6 +190,7 @@ export default function ContactForm() {
       <div>
         <label className="block text-[11px] tracking-[0.14em] uppercase text-white/40 mb-2">Annual revenue (USD, approximate)</label>
         <select
+          name="revenue"
           value={form.revenue}
           onChange={update("revenue")}
           className="w-full bg-white/5 border border-gold/20 focus:border-gold/60 rounded-sm px-4 py-3.5 text-[14px] text-white/80 outline-none transition-colors"
@@ -194,6 +207,7 @@ export default function ContactForm() {
       <div>
         <label className="block text-[11px] tracking-[0.14em] uppercase text-white/40 mb-2">Tell us about your situation</label>
         <textarea
+          name="message"
           rows={4}
           value={form.message}
           onChange={update("message")}
