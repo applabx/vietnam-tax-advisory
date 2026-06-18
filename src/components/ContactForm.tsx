@@ -36,6 +36,28 @@ export default function ContactForm() {
     setForm({ ...form, [k]: e.target.value });
   };
 
+  function buildMailtoBody() {
+    const lines: string[] = [];
+    lines.push(`Contact request from ${siteConfig.url}`);
+    lines.push("");
+    lines.push(`Name: ${form.firstName} ${form.lastName}`);
+    lines.push(`Email: ${form.email}`);
+    if (form.phone) lines.push(`Phone: ${form.phone}`);
+    if (form.company) lines.push(`Company: ${form.company}`);
+    if (form.country) lines.push(`Country of origin: ${form.country}`);
+    if (form.service) lines.push(`Service of interest: ${form.service}`);
+    if (form.revenue) lines.push(`Annual revenue (USD, approx): ${form.revenue}`);
+    if (form.message) {
+      lines.push("");
+      lines.push("Message:");
+      lines.push(form.message);
+    }
+    lines.push("");
+    lines.push(`Submitted: ${new Date().toISOString()}`);
+    lines.push(`Page: ${typeof window !== "undefined" ? window.location.href : ""}`);
+    return lines.join("\n");
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
@@ -60,11 +82,25 @@ export default function ContactForm() {
         if (!res.ok && res.status >= 500) {
           throw new Error("Server error");
         }
+        setSent(true);
+        return;
       }
-      // If no webhook is configured, we still mark as "sent" — the form is a smoke test
-      // of the UX. In production, the user should set NEXT_PUBLIC_CONTACT_WEBHOOK to a
-      // Cloudflare Worker, Formspree endpoint, or similar.
-      setSent(true);
+
+      // No webhook configured — fall back to a mailto: link so the lead is NOT lost.
+      // This opens the visitor's email client with a pre-filled enquiry addressed
+      // to the firm's published email. The form values travel with the email body.
+      // For production, the firm should set NEXT_PUBLIC_CONTACT_WEBHOOK to a
+      // Cloudflare Worker, Formspree, Zapier, or HubSpot form endpoint.
+      const subject = encodeURIComponent(
+        `Vietnam tax enquiry — ${form.firstName} ${form.lastName}${form.company ? " (" + form.company + ")" : ""}`
+      );
+      const body = encodeURIComponent(buildMailtoBody());
+      const mailto = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+      if (typeof window !== "undefined") {
+        window.location.href = mailto;
+        // Give the mailto a moment to fire before showing confirmation.
+        setTimeout(() => setSent(true), 600);
+      }
     } catch (err) {
       setError("Something went wrong. Please email us directly at " + siteConfig.email);
     } finally {
@@ -95,7 +131,7 @@ export default function ContactForm() {
     <form
       onSubmit={onSubmit}
       method="POST"
-      action={process.env.NEXT_PUBLIC_CONTACT_WEBHOOK || "#"}
+      action={process.env.NEXT_PUBLIC_CONTACT_WEBHOOK || `mailto:${siteConfig.email}?subject=${encodeURIComponent("Vietnam tax enquiry")}`}
       className="space-y-5"
     >
       <div className="grid sm:grid-cols-2 gap-5">

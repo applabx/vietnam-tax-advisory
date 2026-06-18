@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { siteConfig } from "@/lib/site";
 
 export default function ChecklistGate() {
   const [email, setEmail] = useState("");
@@ -31,8 +32,16 @@ export default function ChecklistGate() {
             timestamp: new Date().toISOString(),
           }),
         });
+        setSent(true);
+        return;
       }
-      setSent(true);
+      // No webhook configured — fall back to mailto so the lead is not lost.
+      const subject = encodeURIComponent(`Request: Vietnam tax compliance checklist${company ? " — " + company : ""}`);
+      const body = encodeURIComponent(
+        `Please send the Vietnam tax compliance checklist.\n\nName: ${firstName}\nEmail: ${email}\nCompany: ${company}\n\nSubmitted: ${new Date().toISOString()}`
+      );
+      window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+      setTimeout(() => setSent(true), 600);
     } catch (err) {
       setError("Something went wrong. Please try again or email us.");
     } finally {
@@ -61,7 +70,7 @@ export default function ChecklistGate() {
         <form
           onSubmit={onSubmit}
           method="POST"
-          action={process.env.NEXT_PUBLIC_LEAD_WEBHOOK || process.env.NEXT_PUBLIC_CONTACT_WEBHOOK || "#"}
+          action={process.env.NEXT_PUBLIC_LEAD_WEBHOOK || process.env.NEXT_PUBLIC_CONTACT_WEBHOOK || `mailto:${siteConfig.email}?subject=${encodeURIComponent("Vietnam tax compliance checklist")}`}
           className="space-y-4"
         >
           <h3 className="font-serif text-[24px] text-navy mb-2">Get the checklist</h3>
