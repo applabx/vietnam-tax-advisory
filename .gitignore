@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+.next/
+out/
+build/
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env*.local
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Cloudflare
+.wrangler/
+.dev.vars

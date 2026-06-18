@@ -1,0 +1,8 @@
+name = "vietnam-tax-advisory-contact"
+main = "index.ts"
+compatibility_date = "2024-12-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://vietnamtaxadvisory.com"
+NOTIFY_EMAIL = "hello@vietnamtaxadvisory.com"
+FROM_EMAIL = "Vietnam Tax Advisory <noreply@vietnamtaxadvisory.com>"

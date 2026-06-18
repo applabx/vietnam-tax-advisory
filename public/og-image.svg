@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0d1b2a"/>
+  <line x1="60" y1="60" x2="1140" y2="60" stroke="#b8965a" stroke-width="0.5" opacity="0.3"/>
+  <line x1="60" y1="570" x2="1140" y2="570" stroke="#b8965a" stroke-width="0.5" opacity="0.3"/>
+  <text x="100" y="200" font-family="DM Sans, sans-serif" font-size="20" font-weight="500" fill="#b8965a" letter-spacing="6">VIETNAM TAX ADVISORY</text>
+  <text x="100" y="320" font-family="Cormorant Garamond, Georgia, serif" font-size="86" font-weight="300" fill="#ffffff" letter-spacing="-1">Accounting, Tax &amp; CFO</text>
+  <text x="100" y="410" font-family="Cormorant Garamond, Georgia, serif" font-size="86" font-weight="300" fill="#d4b07a" letter-spacing="-1" font-style="italic">for Foreign Companies</text>
+  <text x="100" y="500" font-family="DM Sans, sans-serif" font-size="24" font-weight="300" fill="#ffffff" opacity="0.6">in Vietnam</text>
+  <text x="1130" y="500" font-family="Cormorant Garamond, Georgia, serif" font-size="40" font-weight="500" fill="#ffffff" text-anchor="end">VTA<tspan fill="#b8965a">.</tspan></text>
+</svg>
