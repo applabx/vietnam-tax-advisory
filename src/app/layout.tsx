@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { defaultMetadata } from "@/lib/seo";
-import { organizationSchema, localBusinessSchema } from "@/lib/schema";
+import { organizationSchema, localBusinessSchema, websiteSchema, personSchema } from "@/lib/schema";
 import { JsonLd } from "@/lib/json-ld";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -43,7 +43,14 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="font-sans bg-ivory text-ink-dark antialiased">
-        <JsonLd data={[organizationSchema(), localBusinessSchema()]} />
+        <JsonLd
+          data={[
+            websiteSchema(),
+            organizationSchema(),
+            localBusinessSchema(),
+            ...personSchema(),
+          ]}
+        />
         <Nav />
         <main id="main" className="min-h-screen">
           {children}

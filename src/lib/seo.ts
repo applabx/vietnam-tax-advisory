@@ -35,7 +35,7 @@ export const defaultMetadata = {
     description: siteConfig.description,
     images: [
       {
-        url: siteConfig.ogImage,
+        url: `${siteConfig.url}/og-image.png`,
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -46,7 +46,7 @@ export const defaultMetadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: [siteConfig.ogImage],
+    images: [`${siteConfig.url}/og-image.png`],
     creator: "@vietnamtaxadv",
   },
   robots: {
@@ -62,10 +62,13 @@ export const defaultMetadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/icon.svg", type: "image/svg+xml" },
     ],
-    apple: "/apple-touch-icon.png",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   formatDetection: { telephone: false },
 };
@@ -78,6 +81,7 @@ export function buildPageMetadata(opts: {
   ogType?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
+  authors?: string[];
 }) {
   const url = `${siteConfig.url}${opts.path}`;
   return {
@@ -85,6 +89,7 @@ export function buildPageMetadata(opts: {
     description: opts.description,
     keywords: opts.keywords,
     alternates: { canonical: opts.path },
+    authors: opts.authors?.map((name) => ({ name })),
     openGraph: {
       type: opts.ogType ?? "website",
       locale: "en_US",
@@ -94,7 +99,7 @@ export function buildPageMetadata(opts: {
       description: opts.description,
       images: [
         {
-          url: `${siteConfig.url}${siteConfig.ogImage}`,
+          url: `${siteConfig.url}/og-image.png`,
           width: 1200,
           height: 630,
           alt: opts.title,
@@ -107,7 +112,7 @@ export function buildPageMetadata(opts: {
       card: "summary_large_image",
       title: opts.title,
       description: opts.description,
-      images: [`${siteConfig.url}${siteConfig.ogImage}`],
+      images: [`${siteConfig.url}/og-image.png`],
     },
   };
 }

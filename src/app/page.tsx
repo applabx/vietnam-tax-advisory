@@ -6,16 +6,25 @@ import { SectionHeader } from "@/components/Section";
 import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata = buildPageMetadata({
-  title: "Accounting, Tax & CFO Advisory for Foreign Companies in Vietnam",
+  title: "Vietnam Tax Advisory — Accounting, Tax & CFO Advisory for Foreign Companies",
   description:
-    "Vietnam Tax Advisory helps foreign investors, FDI companies, startups, and regional HQs with monthly accounting, CIT, VAT, PIT, payroll, transfer pricing, audit support, and CFO advisory. English-speaking team, Big-4 heritage.",
+    "Vietnam-based accounting, tax, payroll, transfer pricing, and CFO advisory for foreign investors, FDI companies, startups, and regional HQs. CIT 20% standard rate, VAT 10%, FCT for foreign contractors, transfer pricing under Decree 132/2020. English-speaking team with Big-4 heritage.",
   path: "/",
   keywords: [
     "Vietnam accounting",
     "Vietnam tax advisory",
-    "accounting for foreign companies in Vietnam",
+    "Vietnam corporate income tax",
+    "Vietnam VAT",
+    "Vietnam transfer pricing",
+    "Vietnam foreign contractor tax",
+    "Vietnam payroll",
+    "Vietnam CIT",
     "FDI accounting Vietnam",
     "Vietnam CFO services",
+    "accounting for foreign companies in Vietnam",
+    "Vietnam tax consultant",
+    "Vietnam tax advisor",
+    "Vietnam bookkeeping",
   ],
 });
 
@@ -122,7 +131,7 @@ export default function HomePage() {
       />
 
       {/* HERO */}
-      <section className="relative min-h-[88vh] flex items-center bg-navy overflow-hidden pt-[72px]">
+      <section className="relative min-h-[88vh] flex items-center bg-navy overflow-hidden pt-[140px] pb-16">
         <div
           aria-hidden
           className="absolute inset-0 opacity-50"

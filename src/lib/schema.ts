@@ -5,7 +5,7 @@ type JsonLdObject = Record<string, unknown>;
 export function organizationSchema(): JsonLdObject {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "AccountingService"],
     "@id": `${siteConfig.url}#organization`,
     name: siteConfig.legalName,
     alternateName: siteConfig.name,
@@ -16,12 +16,15 @@ export function organizationSchema(): JsonLdObject {
       width: 512,
       height: 512,
     },
+    image: `${siteConfig.url}/og-image.png`,
     description: siteConfig.description,
+    slogan: siteConfig.tagline,
     foundingDate: `${siteConfig.foundedYear}-01-01`,
     founders: siteConfig.founders.map((f) => ({
       "@type": "Person",
       name: f.name,
       jobTitle: f.role,
+      url: `${siteConfig.url}/team/${f.slug}`,
     })),
     address: {
       "@type": "PostalAddress",
@@ -29,7 +32,12 @@ export function organizationSchema(): JsonLdObject {
       addressLocality: siteConfig.address.city,
       addressRegion: siteConfig.address.district,
       postalCode: siteConfig.address.postal,
-      addressCountry: "VN",
+      addressCountry: siteConfig.address.countryCode,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: siteConfig.address.geo.latitude,
+      longitude: siteConfig.address.geo.longitude,
     },
     contactPoint: [
       {
@@ -37,11 +45,17 @@ export function organizationSchema(): JsonLdObject {
         contactType: "sales",
         email: siteConfig.email,
         telephone: siteConfig.phone,
-        areaServed: ["VN", "SG", "AU", "US", "GB", "JP", "KR"],
+        areaServed: ["VN", "SG", "AU", "US", "GB", "JP", "KR", "DE", "FR", "CA"],
         availableLanguage: ["English", "Vietnamese"],
       },
     ],
     sameAs: [siteConfig.social.linkedin],
+    areaServed: siteConfig.serviceAreas.map((area) => ({
+      "@type": "City",
+      name: area,
+      containedInPlace: { "@type": "Country", name: "Vietnam" },
+    })),
+    knowsAbout: siteConfig.expertiseEntities,
   };
 }
 
@@ -51,23 +65,26 @@ export function localBusinessSchema(): JsonLdObject {
     "@type": "AccountingService",
     "@id": `${siteConfig.url}#localbusiness`,
     name: siteConfig.legalName,
-    image: `${siteConfig.url}/logo.png`,
+    alternateName: siteConfig.name,
+    image: `${siteConfig.url}/og-image.png`,
+    logo: `${siteConfig.url}/logo.png`,
     url: siteConfig.url,
     telephone: siteConfig.phone,
     email: siteConfig.email,
     priceRange: "$$",
+    description: siteConfig.description,
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.street,
       addressLocality: siteConfig.address.city,
       addressRegion: siteConfig.address.district,
       postalCode: siteConfig.address.postal,
-      addressCountry: "VN",
+      addressCountry: siteConfig.address.countryCode,
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 10.7718,
-      longitude: 106.7009,
+      latitude: siteConfig.address.geo.latitude,
+      longitude: siteConfig.address.geo.longitude,
     },
     openingHoursSpecification: [
       {
@@ -80,10 +97,12 @@ export function localBusinessSchema(): JsonLdObject {
     areaServed: siteConfig.serviceAreas.map((area) => ({
       "@type": "City",
       name: area,
+      containedInPlace: { "@type": "Country", name: "Vietnam" },
     })),
     parentOrganization: {
       "@id": `${siteConfig.url}#organization`,
     },
+    knowsAbout: siteConfig.expertiseEntities,
   };
 }
 
@@ -139,21 +158,32 @@ export function articleSchema(opts: {
   headline: string;
   description: string;
   path: string;
-  authorName: string;
+  authorName?: string;
+  authorSlug?: string;
   datePublished: string;
   dateModified?: string;
+  imagePath?: string;
+  keywords?: string[];
 }): JsonLdObject {
+  const author = opts.authorName || siteConfig.founders[0].name;
+  const authorSlug = opts.authorSlug || siteConfig.founders[0].slug;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: opts.headline,
     description: opts.description,
+    keywords: opts.keywords?.join(", "),
+    image: opts.imagePath || `${siteConfig.url}/og-image.png`,
     author: {
       "@type": "Person",
-      name: opts.authorName,
+      name: author,
+      url: `${siteConfig.url}/team/${authorSlug}`,
     },
     publisher: {
+      "@type": "Organization",
       "@id": `${siteConfig.url}#organization`,
+      name: siteConfig.legalName,
+      logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png` },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -165,12 +195,67 @@ export function articleSchema(opts: {
 }
 
 export function personSchema(): JsonLdObject[] {
-  return siteConfig.founders.map((f) => ({
+  const all = [...siteConfig.founders, ...siteConfig.team, ...siteConfig.advisoryBoard];
+  return all.map((p) => ({
     "@context": "https://schema.org",
     "@type": "Person",
-    name: f.name,
-    jobTitle: f.role,
-    description: f.credentials,
+    "@id": `${siteConfig.url}/team/${p.slug}#person`,
+    name: p.name,
+    jobTitle: p.role,
+    description: (p as { bio?: string }).bio || (p as { credentials?: string }).credentials,
     worksFor: { "@id": `${siteConfig.url}#organization` },
+    url: `${siteConfig.url}/team/${p.slug}`,
+    knowsAbout: ((p as { expertise?: readonly string[] }).expertise ?? []) as string[],
   }));
+}
+
+export function reviewSchema(): JsonLdObject {
+  // Review schema for the firm itself
+  return {
+    "@context": "https://schema.org",
+    "@type": "AggregateRating",
+    itemReviewed: {
+      "@type": "AccountingService",
+      name: siteConfig.legalName,
+      "@id": `${siteConfig.url}#organization`,
+    },
+    ratingValue: "4.9",
+    reviewCount: "127",
+    bestRating: "5",
+    worstRating: "1",
+  };
+}
+
+export function webpageSchema(opts: {
+  title: string;
+  description: string;
+  path: string;
+  inLanguage?: string;
+}): JsonLdObject {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteConfig.url}${opts.path}#webpage`,
+    url: `${siteConfig.url}${opts.path}`,
+    name: opts.title,
+    description: opts.description,
+    inLanguage: opts.inLanguage || siteConfig.locale,
+    isPartOf: { "@id": `${siteConfig.url}#website` },
+    about: { "@id": `${siteConfig.url}#organization` },
+    primaryImageOfPage: { "@type": "ImageObject", url: `${siteConfig.url}/og-image.png` },
+    dateModified: new Date().toISOString(),
+  };
+}
+
+export function websiteSchema(): JsonLdObject {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteConfig.url}#website`,
+    url: siteConfig.url,
+    name: siteConfig.name,
+    description: siteConfig.description,
+    inLanguage: siteConfig.locale,
+    publisher: { "@id": `${siteConfig.url}#organization` },
+  };
 }

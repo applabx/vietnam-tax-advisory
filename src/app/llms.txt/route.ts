@@ -2,6 +2,8 @@ import { siteConfig } from "@/lib/site";
 import { serviceSlugs, servicePages } from "@/lib/service-data";
 import { faqTopics, allFaqs } from "@/lib/faq-data";
 import { caseStudies } from "@/lib/case-studies-data";
+import { pillarSlugs, pillarPages } from "@/lib/pillar-data";
+import { landingSlugs, landingPages } from "@/lib/landing-data";
 
 export const dynamic = "force-static";
 
@@ -32,6 +34,26 @@ const caseLines = caseStudies
   .map((c) => `- [${c.name}](${siteConfig.url}/case-studies/${c.slug}): ${c.hero.summary.slice(0, 140)}...`)
   .join("\n");
 
+const pillarLines = pillarSlugs
+  .map((slug) => {
+    const p = pillarPages[slug];
+    const summary = p.description.slice(0, 160).replace(/\n/g, " ");
+    return `- [${p.title}](${siteConfig.url}${p.path}): ${summary}...`;
+  })
+  .join("\n");
+
+const landingLines = landingSlugs
+  .map((slug) => {
+    const p = landingPages[slug];
+    const summary = p.description.slice(0, 160).replace(/\n/g, " ");
+    return `- [${p.title}](${siteConfig.url}${p.path}): ${summary}...`;
+  })
+  .join("\n");
+
+const teamLines = [...siteConfig.founders, ...siteConfig.team, ...siteConfig.advisoryBoard]
+  .map((m) => `- [${m.name} — ${m.role}](${siteConfig.url}/team/${m.slug}): ${(m as { bio?: string }).bio?.slice(0, 140) ?? (m as { credentials?: string }).credentials}`)
+  .join("\n");
+
 const content = `# Vietnam Tax Advisory
 
 > ${siteConfig.tagline}
@@ -45,9 +67,17 @@ Office: ${siteConfig.address.street}, ${siteConfig.address.district}, ${siteConf
 
 ## About
 
-Vietnam Tax Advisory is a Vietnam-based accounting, tax, payroll, transfer pricing, and CFO advisory firm serving foreign investors, FDI companies, startups, and regional headquarters. We work with foreign-owned companies from Singapore, Australia, the United States, the United Kingdom, Japan, South Korea, and beyond. Our team includes former Ministry of Finance auditors and Big-4 alumni, with 10+ years in practice.
+Vietnam Tax Advisory is a Vietnam-based accounting, tax, payroll, transfer pricing, and CFO advisory firm serving foreign investors, FDI companies, startups, and regional headquarters. We work with foreign-owned companies from Singapore, Australia, the United States, the United Kingdom, Japan, South Korea, Germany, France, Canada, and beyond. Our team includes former Ministry of Finance auditors and Big-4 alumni, with 10+ years in practice.
 
-Founded: ${siteConfig.foundedYear}. Service area: Vietnam-wide (Ho Chi Minh City, Hanoi, Da Nang, Binh Duong, Dong Nai, and industrial zones).
+Founded: ${siteConfig.foundedYear}. Service area: Vietnam-wide (Ho Chi Minh City, Hanoi, Da Nang, Binh Duong, Dong Nai, Ba Ria-Vung Tau, Can Tho, Hai Phong, and industrial zones).
+
+## Pillar guides (${pillarSlugs.length} definitive guides)
+
+${pillarLines}
+
+## High-intent landing pages (${landingSlugs.length})
+
+${landingLines}
 
 ## Services (${serviceSlugs.length} service pages)
 
@@ -60,6 +90,10 @@ ${serviceLines}
 - E-commerce: ${siteConfig.url}/industries/ecommerce
 - Technology Startups: ${siteConfig.url}/industries/technology-startups
 - Foreign-Owned Companies: ${siteConfig.url}/industries/foreign-owned
+- Trading Companies: ${siteConfig.url}/industries/trading
+- Consulting Firms: ${siteConfig.url}/industries/consulting
+- Logistics: ${siteConfig.url}/industries/logistics
+- Recruitment: ${siteConfig.url}/industries/recruitment
 
 ## Countries
 
@@ -69,6 +103,13 @@ ${serviceLines}
 - UK companies in Vietnam: ${siteConfig.url}/countries/united-kingdom
 - Japanese companies in Vietnam: ${siteConfig.url}/countries/japan
 - Korean companies in Vietnam: ${siteConfig.url}/countries/korea
+- German companies in Vietnam: ${siteConfig.url}/countries/germany
+- French companies in Vietnam: ${siteConfig.url}/countries/france
+- Canadian companies in Vietnam: ${siteConfig.url}/countries/canada
+
+## Team (${siteConfig.founders.length + siteConfig.team.length + siteConfig.advisoryBoard.length} advisors)
+
+${teamLines}
 
 ## Case studies
 

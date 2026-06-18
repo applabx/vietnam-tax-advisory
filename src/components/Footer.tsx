@@ -18,6 +18,21 @@ const groups: { title: string; links: { label: string; href: string }[] }[] = [
     ],
   },
   {
+    title: "Guides & Resources",
+    links: [
+      { label: "All Guides", href: "/guides" },
+      { label: "CIT Guide", href: "/guides/corporate-income-tax" },
+      { label: "VAT Guide", href: "/guides/vat" },
+      { label: "Payroll & PIT Guide", href: "/guides/payroll" },
+      { label: "Transfer Pricing Guide", href: "/guides/transfer-pricing" },
+      { label: "FAQ Hub", href: "/resources/faq" },
+      { label: "Tax Calendar", href: "/resources/tax-calendar" },
+      { label: "Compliance Checklist", href: "/resources/checklist" },
+      { label: "Company Setup Guide", href: "/resources/setup-guide" },
+      { label: "Case Studies", href: "/case-studies" },
+    ],
+  },
+  {
     title: "Business Setup",
     links: [
       { label: "Company Registration", href: "/setup/company-registration" },
@@ -29,20 +44,10 @@ const groups: { title: string; links: { label: string; href: string }[] }[] = [
     ],
   },
   {
-    title: "Resources",
-    links: [
-      { label: "FAQ Hub", href: "/resources/faq" },
-      { label: "Tax Calendar", href: "/resources/tax-calendar" },
-      { label: "Compliance Checklist", href: "/resources/checklist" },
-      { label: "Company Setup Guide", href: "/resources/setup-guide" },
-      { label: "Case Studies", href: "/case-studies" },
-      { label: "Blog", href: "/blog" },
-    ],
-  },
-  {
     title: "Firm",
     links: [
       { label: "About", href: "/about" },
+      { label: "Our Team", href: "/team" },
       { label: "Industries", href: "/industries" },
       { label: "Countries", href: "/countries" },
       { label: "Contact", href: "/contact" },
