@@ -24,7 +24,7 @@ export type ServicePage = {
 const taxFaqs: FAQ[] = [
   { question: "What Vietnam tax services do you provide?", answer: "We provide end-to-end corporate income tax (CIT), value added tax (VAT), personal income tax (PIT), foreign contractor tax (FCT), withholding tax, transfer pricing documentation, and tax audit representation for foreign-owned companies in Vietnam." },
   { question: "How do you charge for tax services?", answer: "Tax services are typically bundled in a monthly retainer alongside accounting and payroll. Standalone projects (e.g. transfer pricing documentation, tax audit defence) are quoted as fixed fees. Hourly billing is reserved for ad-hoc advisory." },
-  { question: "Can you represent us before the GDT?", answer: "Yes. We are a registered tax agent and represent clients in tax audits, tax appeals, and on-site inspections. Our team includes former MoF auditors with experience in GDT procedure." },
+  { question: "Can you represent us before the GDT?", answer: "Yes. We are a registered tax agent and can represent clients in tax audits, tax appeals, and on-site inspections." },
   { question: "Do you handle tax-treaty applications?", answer: "Yes. We process Certificate of Residence (CoR) filings, treaty-rate withholding applications, and treaty-claim procedures. Vietnam has DTAs with 80+ countries; we maintain a current list and renewal calendar for our clients." },
 ];
 
@@ -1180,7 +1180,7 @@ export const servicePages: Record<string, ServicePage> = {
         "Specialist accounting and tax for 100%-foreign-owned companies in Vietnam: WFOE setup, group reporting, transfer pricing, and profit repatriation.",
     },
     overview:
-      "Foreign-owned companies (WFOEs) in Vietnam have a specific set of obligations: SBV capital and loan reporting, transfer pricing documentation, inter-company agreement maintenance, and group reporting. Our WFOE team has worked with thousands of foreign-owned companies across sectors.",
+      "Foreign-owned companies (WFOEs) in Vietnam have a specific set of obligations: SBV capital and loan reporting, transfer pricing documentation, inter-company agreement maintenance, and group reporting.",
     whoNeeds: [
       "100%-foreign-owned companies in Vietnam",
       "Joint ventures with complex inter-company flows",
@@ -1498,7 +1498,7 @@ export const servicePages: Record<string, ServicePage> = {
         "Specialist accounting, tax, payroll, transfer pricing, and audit support for German-headquartered companies operating in Vietnam. HGB-to-VAS reconciliation, EUR reporting, and treaty-rate withholding.",
     },
     overview:
-      "German companies entering Vietnam typically establish a 100%-foreign-owned subsidiary with a sales, manufacturing, or regional service centre footprint. We deliver monthly bookkeeping in VAS, German-style management accounts (HGB-equivalent), EUR reporting, transfer-pricing documentation aligned with both the German Federal Central Tax Office (BZSt) and Vietnamese GDT, and EUR-functional statutory financials. Our team has supported German Mittelstand and DAX-40 entrants with full compliance, treaty-rate withholding, and double-tax-treaty claims under the Germany-Vietnam DTA.",
+      "German companies entering Vietnam typically establish a 100%-foreign-owned subsidiary with a sales, manufacturing, or regional service centre footprint. We deliver monthly bookkeeping in VAS, German-style management accounts (HGB-equivalent), EUR reporting, transfer-pricing documentation aligned with both the German Federal Central Tax Office (BZSt) and Vietnamese GDT, and EUR-functional statutory financials. Our team prepares monthly VAS bookkeeping, HGB-aligned management accounts, EUR reporting, transfer pricing under Decree 132/2020, and treaty-rate withholding claims under the Germany-Vietnam DTA.",
     whoNeeds: [
       "German Mittelstand companies establishing a Vietnam subsidiary",
       "DAX-40 multinationals with regional APAC headquarters in Vietnam",
@@ -1556,7 +1556,7 @@ export const servicePages: Record<string, ServicePage> = {
         "Specialist accounting, tax, payroll, transfer pricing, and audit support for French-headquartered companies operating in Vietnam. PCG-to-VAS reconciliation, EUR reporting, and treaty-rate withholding.",
     },
     overview:
-      "French companies entering Vietnam typically establish a 100%-foreign-owned subsidiary with a sales, manufacturing, or representative office presence. We deliver monthly bookkeeping in VAS, French-style management accounts (PCG-equivalent), EUR reporting, transfer-pricing documentation aligned with both the French tax authorities (DGFIP) and Vietnamese GDT, and EUR-functional statutory financials. Our team has supported CAC-40 and SBF-120 entrants with full compliance, treaty-rate withholding, and double-tax-treaty claims under the France-Vietnam DTA.",
+      "French companies entering Vietnam typically establish a 100%-foreign-owned subsidiary with a sales, manufacturing, or representative office presence. We deliver monthly bookkeeping in VAS, French-style management accounts (PCG-equivalent), EUR reporting, transfer-pricing documentation aligned with both the French tax authorities (DGFIP) and Vietnamese GDT, and EUR-functional statutory financials. Our team prepares monthly VAS bookkeeping, PCG-aligned management accounts, EUR reporting, transfer pricing under Decree 132/2020, and treaty-rate withholding claims under the France-Vietnam DTA.",
     whoNeeds: [
       "CAC-40 and SBF-120 multinationals with Vietnam operations",
       "French luxury, retail, and consumer goods companies entering Vietnam",
@@ -1614,7 +1614,7 @@ export const servicePages: Record<string, ServicePage> = {
         "Specialist accounting, tax, payroll, transfer pricing, and audit support for Canadian-headquartered companies operating in Vietnam. IFRS-to-VAS reconciliation, CAD reporting, and treaty-rate withholding.",
     },
     overview:
-      "Canadian companies entering Vietnam typically establish a 100%-foreign-owned subsidiary with a sales, engineering, or regional service centre presence. We deliver monthly bookkeeping in VAS, Canadian-style management accounts (IFRS-equivalent), CAD reporting, transfer-pricing documentation aligned with both the CRA (Canada Revenue Agency) and Vietnamese GDT, and CAD-functional statutory financials. Our team has supported TSX-listed and private Canadian entrants with full compliance, treaty-rate withholding, and double-tax-treaty claims under the Canada-Vietnam DTA.",
+      "Canadian companies entering Vietnam typically establish a 100%-foreign-owned subsidiary with a sales, engineering, or regional service centre presence. We deliver monthly bookkeeping in VAS, Canadian-style management accounts (IFRS-equivalent), CAD reporting, transfer-pricing documentation aligned with both the CRA (Canada Revenue Agency) and Vietnamese GDT, and CAD-functional statutory financials. Our team prepares monthly VAS bookkeeping, IFRS-aligned management accounts, CAD reporting, transfer pricing under Decree 132/2020, and treaty-rate withholding claims under the Canada-Vietnam DTA.",
     whoNeeds: [
       "TSX-listed multinationals with Vietnam operations",
       "Canadian mining, resources, and engineering companies entering Vietnam",
@@ -1710,7 +1710,7 @@ export const servicePages: Record<string, ServicePage> = {
       "Mixing personal and company fuel expenses (a frequent GDT audit finding)",
     ],
     benefits: [
-      { title: "Sector-specific expertise", desc: "We understand freight forwarding, 3PL, and last-mile economics. Our team has supported multiple international logistics groups." },
+      { title: "Sector-specific expertise", desc: "We understand freight forwarding, 3PL, and last-mile economics. Our team understands the freight-forwarding, 3PL, and last-mile operating model." },
       { title: "FCT compliance", desc: "Cross-border freight services are subject to FCT; we model the regime and ensure compliance." },
       { title: "VAT recovery", desc: "We maximise VAT recovery on fuel, vehicle leasing, customs brokerage, and other creditable expenses." },
       { title: "TP documentation", desc: "Local File and benchmarking studies aligned with both home-country and Vietnamese rules." },

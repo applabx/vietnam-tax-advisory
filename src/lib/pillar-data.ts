@@ -199,7 +199,7 @@ export const citPillar: PillarPageData = {
       body: [
         "A GDT audit typically runs 30–90 days for a single year and covers CIT, VAT, FCT, and PIT. The audit is triggered by: the random selection, a complaint, an industry-wide review, or the company's first-time filing pattern.",
         "Audit defence starts before the audit. We help clients prepare an audit-ready file: organised documentation, pre-audit compliance review, and identification of issues to disclose proactively. Once the audit begins, the priorities are: respond to information requests promptly, present documentation professionally, and escalate to senior GDT officials where appropriate.",
-        "Most GDT audits conclude with adjustments of 5–15% of declared tax. Larger adjustments are reserved for serious non-compliance. We have successfully defended clients against adjustments exceeding VND 50 billion through the appeal process.",
+        "Most GDT audits conclude with adjustments of 5–15% of declared tax. Larger adjustments are reserved for serious non-compliance. GDT assessments exceeding VND 50 billion are typically resolved through the appeal process, with substantial reductions achievable on proper documentation.",
       ],
     },
     {
@@ -208,7 +208,7 @@ export const citPillar: PillarPageData = {
       body: [
         "The most expensive CIT mistakes we see: (1) failing to claim treaty relief on inter-company payments, (2) deducting inter-company charges without arm's-length documentation, (3) missing the loss-carryforward claim in the finalisation return, (4) over-claiming VAT input credit and creating a CIT adjustment, (5) treating the parent's invoice to the local entity as the same as the local entity's own expenses, (6) failing to register eligible CIT incentives at IRC application.",
         "The most common avoidable CIT penalty: late filing of the finalisation return. The penalty is small (VND 5–25 million) but signals broader non-compliance to the GDT and triggers follow-up audits.",
-        "The most expensive avoidable CIT penalty: claiming tax incentives you do not qualify for. The GDT assesses back tax, interest, and a 1–3x penalty. We have seen VND 50 billion+ assessments for overstated incentives.",
+        "The most expensive avoidable CIT penalty: claiming tax incentives you do not qualify for. The GDT assesses back tax, interest, and a 1–3x penalty. VND 50 billion+ assessments for overstated incentives are not uncommon in major audits.",
       ],
     },
   ],
@@ -230,8 +230,6 @@ export const citPillar: PillarPageData = {
   relatedServices: allServices.slice(0, 6),
   countries,
   industries,
-  authorSlug: "linh-nguyen",
-  authorName: "Linh Nguyen",
   datePublished: today,
   dateModified: today,
 };
@@ -246,8 +244,6 @@ export const pillarPages: Record<string, PillarPageData> = {
 // ============================================================================
 
 const pillarDefaults = {
-  authorSlug: "linh-nguyen",
-  authorName: "Linh Nguyen",
   datePublished: today,
   dateModified: today,
 };
@@ -801,10 +797,8 @@ pillarPages["foreign-contractor-tax"] = {
   relatedPillars: allPillars.filter((p) => p.slug !== "foreign-contractor-tax").slice(0, 6),
   relatedServices: allServices.filter((s) => s.href.includes("foreign") || s.href.includes("tax")),
   countries,
-  industries,
+   industries,
 };
-
-export const pillarSlugs = Object.keys(pillarPages);
 
 // ============================================================================
 // 6. TRANSFER PRICING
@@ -909,7 +903,7 @@ pillarPages["transfer-pricing"] = {
       body: [
         "TP audits are the most complex GDT audits. The audit typically focuses on: related-party transaction identification, arm's-length pricing, EBITDA cap, debt-to-equity, and benefit-test documentation.",
         "Audit defence starts before the audit. We conduct pre-audit reviews to identify issues and prepare remediation strategies. Once the audit begins, the priorities are: respond to information requests promptly, present documentation professionally, and escalate to senior GDT officials where appropriate.",
-        "Most TP audits conclude with adjustments. The size of the adjustment depends on the documentation quality and the negotiation. We have successfully defended clients against adjustments exceeding VND 50 billion through the appeal process.",
+        "Most TP audits conclude with adjustments. The size of the adjustment depends on the documentation quality and the negotiation. GDT assessments exceeding VND 50 billion are typically resolved through the appeal process, with substantial reductions achievable on proper documentation.",
       ],
     },
     {
@@ -1292,7 +1286,7 @@ pillarPages["statutory-audit"] = {
       body: [
         "The management letter is the auditor's communication to management on internal controls, accounting policies, and operational improvements. The letter is separate from the audit opinion but is delivered alongside it.",
         "The management letter covers: control deficiencies (significant deficiencies and material weaknesses), accounting policy choices, estimates and judgements, and operational observations.",
-        "The management letter is not public but is reviewed by the parent company's auditors and the audit committee. Material weaknesses must be remediated; significant deficiencies should be addressed.",
+        "The management letter is reviewed by the parent company's auditors and the audit committee. Material weaknesses must be remediated; significant deficiencies should be addressed.",
       ],
     },
     {
@@ -1444,3 +1438,5 @@ pillarPages["profit-repatriation"] = {
   countries,
   industries,
 };
+
+export const pillarSlugs = Object.keys(pillarPages);

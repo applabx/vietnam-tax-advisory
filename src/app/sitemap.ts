@@ -2,7 +2,6 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
 import { servicePages, serviceSlugs } from "@/lib/service-data";
 import { faqTopics } from "@/lib/faq-data";
-import { caseStudies } from "@/lib/case-studies-data";
 import { pillarPages, pillarSlugs } from "@/lib/pillar-data";
 import { landingPages, landingSlugs } from "@/lib/landing-data";
 
@@ -14,7 +13,6 @@ const staticRoutes = [
   { path: "/setup", priority: 0.8 },
   { path: "/industries", priority: 0.8 },
   { path: "/countries", priority: 0.8 },
-  { path: "/case-studies", priority: 0.7 },
   { path: "/resources", priority: 0.7 },
   { path: "/resources/faq", priority: 0.8 },
   { path: "/resources/tax-calendar", priority: 0.7 },
@@ -22,7 +20,6 @@ const staticRoutes = [
   { path: "/resources/setup-guide", priority: 0.8 },
   { path: "/guides", priority: 0.9 },
   { path: "/about", priority: 0.7 },
-  { path: "/team", priority: 0.7 },
   { path: "/contact", priority: 0.8 },
   { path: "/privacy", priority: 0.3 },
   { path: "/terms", priority: 0.3 },
@@ -59,15 +56,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  for (const c of caseStudies) {
-    entries.push({
-      url: `${base}/case-studies/${c.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    });
-  }
-
   for (const t of faqTopics) {
     entries.push({
       url: `${base}/resources/faq#${t.slug}`,
@@ -94,16 +82,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.85,
-    });
-  }
-
-  // Team pages
-  for (const member of [...siteConfig.founders, ...siteConfig.team, ...siteConfig.advisoryBoard]) {
-    entries.push({
-      url: `${base}/team/${member.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.5,
     });
   }
 

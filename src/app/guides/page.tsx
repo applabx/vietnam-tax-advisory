@@ -10,7 +10,7 @@ import type { FAQ } from "@/lib/faq-data";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Vietnam Tax & Accounting Guides — Definitive Resources for Foreign Companies",
-  description: "The definitive guides to Vietnam tax, accounting, payroll, transfer pricing, audits, and profit repatriation — written for foreign-owned companies by Vietnam Tax Advisory's Big-4 alumni team.",
+  description: "Comprehensive guides to Vietnam tax, accounting, payroll, transfer pricing, audits, and profit repatriation for foreign-owned companies operating in Vietnam.",
   path: "/guides",
   keywords: ["Vietnam tax guide", "Vietnam accounting guide", "Vietnam corporate tax", "Vietnam VAT guide", "Vietnam transfer pricing guide"],
 });
@@ -58,7 +58,7 @@ export default function GuidesHubPage() {
             Vietnam tax & accounting <em className="text-gold-light">guides</em>
           </h1>
           <p className="text-white/65 text-[17px] font-light leading-[1.8] max-w-2xl mb-10">
-            The definitive guides for foreign-owned companies operating in Vietnam — written by Vietnam Tax Advisory&apos;s Big-4 alumni team. Each guide is a comprehensive, citation-quality reference with practical examples, common mistakes, and expert recommendations.
+            Comprehensive guides to Vietnamese tax, accounting, payroll, transfer pricing, audit, and profit repatriation for foreign-owned companies operating in Vietnam. Each guide is based on publicly available Vietnamese law and GDT practice as of the listed update date. Content is general in nature and does not constitute professional tax or legal advice.
           </p>
           <div className="flex flex-wrap gap-3">
             {pillars.map((p) => (
@@ -93,7 +93,7 @@ export default function GuidesHubPage() {
                   {p.description}
                 </p>
                 <div className="text-[12px] text-ink-muted mb-6">
-                  By {p.authorName} · Updated {new Date(p.dateModified ?? p.datePublished).toLocaleDateString("en-SG", { year: "numeric", month: "long", day: "numeric" })}
+                  Updated {new Date(p.dateModified ?? p.datePublished).toLocaleDateString("en-SG", { year: "numeric", month: "long", day: "numeric" })}
                 </div>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {p.keywords.slice(0, 4).map((k) => (

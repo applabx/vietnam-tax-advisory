@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/lib/json-ld";
-import { breadcrumbSchema, personSchema } from "@/lib/schema";
+import { breadcrumbSchema } from "@/lib/schema";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaStrip } from "@/components/Section";
 import { siteConfig } from "@/lib/site";
@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = buildPageMetadata({
   title: "About Vietnam Tax Advisory",
   description:
-    "Vietnam Tax Advisory is a Vietnam-based accounting, tax, and CFO advisory firm for foreign-owned companies. Big-4 heritage, 10+ years in practice, English-first.",
+    "Vietnam Tax Advisory is a Vietnam-based accounting and tax services firm serving foreign-owned companies. We focus on Vietnamese accounting, tax, payroll, transfer pricing, and company setup.",
   path: "/about",
 });
 
@@ -19,7 +19,6 @@ export default function AboutPage() {
       <JsonLd
         data={[
           breadcrumbSchema([{ name: "Home", path: "/" }, { name: "About", path: "/about" }]),
-          ...personSchema(),
         ]}
       />
 
@@ -28,65 +27,52 @@ export default function AboutPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
           <div className="eyebrow !text-gold-light">About</div>
           <h1 className="font-serif text-[clamp(36px,5vw,64px)] font-light leading-[1.1] text-white max-w-3xl mb-6">
-            Built for <em className="text-gold-light">foreign-owned</em> companies in Vietnam
+            About <em className="text-gold-light">Vietnam Tax Advisory</em>
           </h1>
           <p className="text-white/65 text-[17px] font-light leading-[1.8] max-w-2xl">
-            {siteConfig.name} is a Vietnam-based accounting, tax, payroll, transfer pricing, and CFO advisory firm. We work with foreign investors, FDI companies, startups, and regional headquarters.
+            Vietnam Tax Advisory is a Vietnam-based accounting and tax services firm focused on foreign-owned companies operating in Vietnam.
           </p>
         </div>
       </section>
 
       <section className="bg-white section-pad">
         <div className="container-page max-w-3xl prose-vietnam">
-          <h2>Our story</h2>
+          <h2>What we do</h2>
           <p>
-            {siteConfig.legalName} was founded in {siteConfig.foundedYear} by a small group of Vietnamese tax professionals and Big-4 alumni who saw a gap in the market: foreign-owned companies in Vietnam needed an English-speaking, internationally-trained accounting partner that could deliver to the standard of a Singapore, Sydney, or Tokyo head office.
+            We provide accounting, tax, payroll, transfer pricing, and company setup services for foreign-owned companies (WFOEs, joint ventures, branches) operating in Vietnam. We work with Vietnamese Accounting Standards (VAS), Vietnamese tax law, and the General Department of Taxation (GDT) practice.
           </p>
           <p>
-            Ten years on, we work with over a hundred foreign-owned companies across Ho Chi Minh City, Hanoi, and the industrial zones. Our team includes former Ministry of Finance auditors, Big-4 alumni, and licensed tax agents. We are registered as a tax agent with the General Department of Taxation and licensed to deliver statutory audit support.
+            Our content covers Vietnamese tax rates (CIT 20% standard, VAT 10% standard), filings (monthly VAT, quarterly CIT provisional, annual CIT finalisation), compliance obligations (transfer pricing under Decree 132/2020, foreign contractor withholding, payroll and social insurance), and entity setup (IRC and ERC licensing).
           </p>
 
-          <h2>What we believe</h2>
+          <h2>What we do not publish</h2>
           <p>
-            Three things:
+            We do not publish individual team member profiles, credentials, biographies, or ratings until those details have been verified and the relevant individuals have consented to publication. We do not publish named client testimonials, case studies with real company names, or numerical ratings (e.g. "4.9 stars from 127 reviews") that cannot be independently verified.
           </p>
-          <ol>
-            <li><strong>Compliance is a baseline.</strong> A tax filing on time, a transfer-pricing file contemporaneous, a work permit renewed before expiry — that&apos;s the table stake. We deliver this for every client, every month.</li>
-            <li><strong>English is non-negotiable.</strong> Your CFO, your head office, your board — they need clarity. We deliver financial statements, board packs, and GDT submissions in English. No translation overhead, no surprises.</li>
-            <li><strong>Fixed fees build trust.</strong> Hourly billing creates misaligned incentives. We charge a transparent monthly retainer tied to the scope of work. You know what you&apos;re paying, and what you&apos;re getting.</li>
-          </ol>
+          <p>
+            Where a page contains examples, the examples are clearly labelled as illustrative or hypothetical and do not refer to real engagements.
+          </p>
 
           <h2>How we engage</h2>
           <p>
-            Our engagements are monthly retainers, scoped to your entity and your reporting calendar. Most clients start with a 30-minute free consultation, agree on a fixed-fee scope, and onboard in two to six weeks. From month three, you see the steady-state: monthly close within 10 working days, monthly management pack, quarterly review with your dedicated advisor.
+            Engagements are typically scoped around monthly compliance and ad-hoc projects. Initial conversations are usually 30 minutes and at no charge.
           </p>
-          <p>
-            We work on cloud platforms (Xero, QuickBooks, Sage) so your head office has live visibility. We deliver in English, on your currency, on your timeline.
-          </p>
-        </div>
-      </section>
 
-      <section className="bg-ivory section-pad">
-        <div className="container-page">
-          <h2 className="font-serif text-[clamp(28px,3.5vw,40px)] font-light text-navy leading-[1.15] mb-10">Leadership</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {siteConfig.founders.map((f) => (
-              <div key={f.name} className="bg-white p-10 border border-ivory-warm">
-                <div className="w-20 h-20 rounded-full bg-gold-pale text-gold flex items-center justify-center font-serif text-[28px] font-medium mb-5">
-                  {f.name.split(" ").map((n) => n[0]).join("")}
-                </div>
-                <h3 className="font-serif text-[24px] font-medium text-navy mb-1">{f.name}</h3>
-                <div className="text-gold text-[13px] tracking-[0.1em] uppercase mb-4">{f.role}</div>
-                <p className="text-[14px] text-ink-muted leading-[1.8]">{f.credentials}</p>
-              </div>
-            ))}
-          </div>
+          <h2>Geographic coverage</h2>
+          <p>
+            We work with foreign-owned companies across Vietnam, with our registered office at {siteConfig.address.street}, {siteConfig.address.district}, {siteConfig.address.city}. We routinely work with parent companies headquartered in Singapore, Australia, the United States, the United Kingdom, Japan, and South Korea, and with other home jurisdictions where Vietnam has a double tax treaty.
+          </p>
+
+          <h2>Contact</h2>
+          <p>
+            Email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or call {siteConfig.phone}. See the <a href="/contact">contact page</a> for a consultation request.
+          </p>
         </div>
       </section>
 
       <CtaStrip
-        title="Want to work with us?"
-        description="Book a free 30-minute consultation. We'll review your situation and outline a fixed-fee engagement."
+        title="Want to discuss your Vietnam tax position?"
+        description="Book a free 30-minute consultation. We will review your situation and explain what an engagement would look like."
       />
     </>
   );

@@ -29,7 +29,6 @@ const groups: { title: string; links: { label: string; href: string }[] }[] = [
       { label: "Tax Calendar", href: "/resources/tax-calendar" },
       { label: "Compliance Checklist", href: "/resources/checklist" },
       { label: "Company Setup Guide", href: "/resources/setup-guide" },
-      { label: "Case Studies", href: "/case-studies" },
     ],
   },
   {
@@ -47,7 +46,6 @@ const groups: { title: string; links: { label: string; href: string }[] }[] = [
     title: "Firm",
     links: [
       { label: "About", href: "/about" },
-      { label: "Our Team", href: "/team" },
       { label: "Industries", href: "/industries" },
       { label: "Countries", href: "/countries" },
       { label: "Contact", href: "/contact" },

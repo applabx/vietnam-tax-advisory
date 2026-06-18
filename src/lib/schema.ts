@@ -19,13 +19,8 @@ export function organizationSchema(): JsonLdObject {
     image: `${siteConfig.url}/og-image.png`,
     description: siteConfig.description,
     slogan: siteConfig.tagline,
-    foundingDate: `${siteConfig.foundedYear}-01-01`,
-    founders: siteConfig.founders.map((f) => ({
-      "@type": "Person",
-      name: f.name,
-      jobTitle: f.role,
-      url: `${siteConfig.url}/team/${f.slug}`,
-    })),
+    // foundingDate removed — was an unverified claim.
+    // founders removed — no verified individuals to publish.
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.street,
@@ -45,7 +40,7 @@ export function organizationSchema(): JsonLdObject {
         contactType: "sales",
         email: siteConfig.email,
         telephone: siteConfig.phone,
-        areaServed: ["VN", "SG", "AU", "US", "GB", "JP", "KR", "DE", "FR", "CA"],
+        areaServed: ["VN", "SG", "AU", "US", "GB", "JP", "KR"],
         availableLanguage: ["English", "Vietnamese"],
       },
     ],
@@ -158,15 +153,13 @@ export function articleSchema(opts: {
   headline: string;
   description: string;
   path: string;
-  authorName?: string;
-  authorSlug?: string;
   datePublished: string;
   dateModified?: string;
   imagePath?: string;
   keywords?: string[];
 }): JsonLdObject {
-  const author = opts.authorName || siteConfig.founders[0].name;
-  const authorSlug = opts.authorSlug || siteConfig.founders[0].slug;
+  // Author is the publishing organization, not an individual — we do not
+  // publish Person author schema until a verified byline is available.
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -175,9 +168,9 @@ export function articleSchema(opts: {
     keywords: opts.keywords?.join(", "),
     image: opts.imagePath || `${siteConfig.url}/og-image.png`,
     author: {
-      "@type": "Person",
-      name: author,
-      url: `${siteConfig.url}/team/${authorSlug}`,
+      "@type": "Organization",
+      name: siteConfig.legalName,
+      "@id": `${siteConfig.url}#organization`,
     },
     publisher: {
       "@type": "Organization",
@@ -194,36 +187,19 @@ export function articleSchema(opts: {
   };
 }
 
+// Person schema intentionally returns no entries. We do not publish Person
+// schema for any individual until that person's identity, role, credentials,
+// and consent have been verified by the firm. This avoids fabricating
+// authority signals that AI search engines and users cannot validate.
 export function personSchema(): JsonLdObject[] {
-  const all = [...siteConfig.founders, ...siteConfig.team, ...siteConfig.advisoryBoard];
-  return all.map((p) => ({
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${siteConfig.url}/team/${p.slug}#person`,
-    name: p.name,
-    jobTitle: p.role,
-    description: (p as { bio?: string }).bio || (p as { credentials?: string }).credentials,
-    worksFor: { "@id": `${siteConfig.url}#organization` },
-    url: `${siteConfig.url}/team/${p.slug}`,
-    knowsAbout: ((p as { expertise?: readonly string[] }).expertise ?? []) as string[],
-  }));
+  return [];
 }
 
-export function reviewSchema(): JsonLdObject {
-  // Review schema for the firm itself
-  return {
-    "@context": "https://schema.org",
-    "@type": "AggregateRating",
-    itemReviewed: {
-      "@type": "AccountingService",
-      name: siteConfig.legalName,
-      "@id": `${siteConfig.url}#organization`,
-    },
-    ratingValue: "4.9",
-    reviewCount: "127",
-    bestRating: "5",
-    worstRating: "1",
-  };
+// AggregateRating / Review schema intentionally returns null. We do not publish
+// numeric ratings or review counts until we have real, attributable reviews
+// from real clients with consent.
+export function reviewSchema(): JsonLdObject | null {
+  return null;
 }
 
 export function webpageSchema(opts: {

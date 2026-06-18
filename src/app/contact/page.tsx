@@ -9,7 +9,7 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact a Vietnam Tax Specialist",
   description:
-    "Book a free 30-minute consultation with a Vietnam tax specialist. English-speaking team, Big-4 heritage, and 10+ years in practice. We respond within 24 hours.",
+    "Book a free 30-minute consultation with a Vietnam tax specialist. We respond within 24 hours.",
   path: "/contact",
 });
 

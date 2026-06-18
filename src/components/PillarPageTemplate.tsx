@@ -25,8 +25,6 @@ export type PillarPageData = {
   relatedServices: { label: string; href: string }[];
   countries: { label: string; href: string }[];
   industries: { label: string; href: string }[];
-  authorSlug: string;
-  authorName: string;
   datePublished: string;
   dateModified?: string;
 };
@@ -40,7 +38,6 @@ export function buildPillarMetadata(page: PillarPageData): Metadata {
     ogType: "article",
     publishedTime: page.datePublished,
     modifiedTime: page.dateModified ?? page.datePublished,
-    authors: [page.authorName],
   });
 }
 
@@ -58,8 +55,6 @@ export function PillarPage({ page }: { page: PillarPageData }) {
             headline: page.title,
             description: page.description,
             path: page.path,
-            authorName: page.authorName,
-            authorSlug: page.authorSlug,
             datePublished: page.datePublished,
             dateModified: page.dateModified ?? page.datePublished,
             keywords: page.keywords,
@@ -85,11 +80,9 @@ export function PillarPage({ page }: { page: PillarPageData }) {
             {page.heroDescription}
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-white/50 tracking-[0.08em] uppercase">
-            <span>By {page.authorName}</span>
+            <span>Published by Vietnam Tax Advisory</span>
             <span>·</span>
             <span>Updated {new Date(page.dateModified ?? page.datePublished).toLocaleDateString("en-SG", { year: "numeric", month: "long", day: "numeric" })}</span>
-            <span>·</span>
-            <span>~{Math.round(page.sections.reduce((acc, s) => acc + (typeof s.body === "string" ? s.body.length : s.body.join(" ").length), 0) / 5500)} min read</span>
           </div>
         </div>
       </section>
@@ -138,23 +131,11 @@ export function PillarPage({ page }: { page: PillarPageData }) {
               </div>
             </section>
 
-            <section id="author" className="not-prose border-t border-ivory-warm mt-16 pt-10">
-              <div className="flex items-start gap-6">
-                <div className="w-20 h-20 rounded-full bg-gold-pale text-gold flex items-center justify-center font-serif text-[28px] font-medium flex-shrink-0">
-                  {page.authorName.split(" ").map((n) => n[0]).join("")}
-                </div>
-                <div>
-                  <div className="text-[11px] tracking-[0.2em] uppercase text-gold mb-2">Written by</div>
-                  <div className="font-serif text-[24px] text-navy mb-2">{page.authorName}</div>
-                  <p className="text-[14px] text-ink-muted leading-[1.8] max-w-2xl">
-                    {page.authorName === "Linh Nguyen"
-                      ? "Linh is the Managing Partner of Vietnam Tax Advisory. A CPA and Big-4 alumna, she leads the firm's tax practice with a focus on FDI companies, transfer pricing, and GDT audit defence."
-                      : page.authorName === "Marc Schneider"
-                      ? "Marc leads our international advisory practice from Singapore, supporting regional headquarters across Southeast Asia, Australia, and Japan."
-                      : "Tax and accounting professional at Vietnam Tax Advisory."}
-                  </p>
-                </div>
-              </div>
+            <section id="about-this-content" className="not-prose border-t border-ivory-warm mt-16 pt-10">
+              <div className="text-[11px] tracking-[0.2em] uppercase text-gold mb-3">About this content</div>
+              <p className="text-[14px] text-ink-muted leading-[1.8] max-w-2xl">
+                This guide is published by Vietnam Tax Advisory. It is general in nature and based on publicly available Vietnamese law and GDT practice as of {new Date(page.dateModified ?? page.datePublished).toLocaleDateString("en-SG", { year: "numeric", month: "long", day: "numeric" })}. It does not constitute professional tax or legal advice. For advice specific to your situation, contact us via the <a href="/contact" className="text-gold hover:underline">contact page</a>.
+              </p>
             </section>
           </article>
 

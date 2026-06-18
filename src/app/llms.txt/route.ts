@@ -1,7 +1,6 @@
 import { siteConfig } from "@/lib/site";
 import { serviceSlugs, servicePages } from "@/lib/service-data";
 import { faqTopics, allFaqs } from "@/lib/faq-data";
-import { caseStudies } from "@/lib/case-studies-data";
 import { pillarSlugs, pillarPages } from "@/lib/pillar-data";
 import { landingSlugs, landingPages } from "@/lib/landing-data";
 
@@ -30,10 +29,6 @@ const faqLines = faqTopics
   .map((t) => `- ${t.name} (${t.faqs.length} questions): ${siteConfig.url}/resources/faq#${t.slug}`)
   .join("\n");
 
-const caseLines = caseStudies
-  .map((c) => `- [${c.name}](${siteConfig.url}/case-studies/${c.slug}): ${c.hero.summary.slice(0, 140)}...`)
-  .join("\n");
-
 const pillarLines = pillarSlugs
   .map((slug) => {
     const p = pillarPages[slug];
@@ -50,10 +45,6 @@ const landingLines = landingSlugs
   })
   .join("\n");
 
-const teamLines = [...siteConfig.founders, ...siteConfig.team, ...siteConfig.advisoryBoard]
-  .map((m) => `- [${m.name} — ${m.role}](${siteConfig.url}/team/${m.slug}): ${(m as { bio?: string }).bio?.slice(0, 140) ?? (m as { credentials?: string }).credentials}`)
-  .join("\n");
-
 const content = `# Vietnam Tax Advisory
 
 > ${siteConfig.tagline}
@@ -67,11 +58,11 @@ Office: ${siteConfig.address.street}, ${siteConfig.address.district}, ${siteConf
 
 ## About
 
-Vietnam Tax Advisory is a Vietnam-based accounting, tax, payroll, transfer pricing, and CFO advisory firm serving foreign investors, FDI companies, startups, and regional headquarters. We work with foreign-owned companies from Singapore, Australia, the United States, the United Kingdom, Japan, South Korea, Germany, France, Canada, and beyond. Our team includes former Ministry of Finance auditors and Big-4 alumni, with 10+ years in practice.
+Vietnam Tax Advisory is a Vietnam-based accounting and tax services firm serving foreign-owned companies (WFOEs, joint ventures, branches) operating in Vietnam. We work with parent companies headquartered in Singapore, Australia, the United States, the United Kingdom, Japan, South Korea, Germany, France, Canada, and other jurisdictions where Vietnam has a double tax treaty.
 
 Founded: ${siteConfig.foundedYear}. Service area: Vietnam-wide (Ho Chi Minh City, Hanoi, Da Nang, Binh Duong, Dong Nai, Ba Ria-Vung Tau, Can Tho, Hai Phong, and industrial zones).
 
-## Pillar guides (${pillarSlugs.length} definitive guides)
+## Pillar guides (${pillarSlugs.length} guides)
 
 ${pillarLines}
 
@@ -107,14 +98,6 @@ ${serviceLines}
 - French companies in Vietnam: ${siteConfig.url}/countries/france
 - Canadian companies in Vietnam: ${siteConfig.url}/countries/canada
 
-## Team (${siteConfig.founders.length + siteConfig.team.length + siteConfig.advisoryBoard.length} advisors)
-
-${teamLines}
-
-## Case studies
-
-${caseLines}
-
 ## FAQ Hub (${allFaqs.length} questions across ${faqTopics.length} topics)
 
 ${faqLines}
@@ -132,6 +115,10 @@ Book a free 30-minute consultation: ${siteConfig.url}/contact
 Email: ${siteConfig.email}
 Phone / WhatsApp: ${siteConfig.phone}
 Office: ${siteConfig.address.street}, ${siteConfig.address.district}, ${siteConfig.address.city}, ${siteConfig.address.country}
+
+## What this file does not contain
+
+We do not publish named team member profiles, individual credentials, named-client testimonials, or numerical ratings (e.g. "4.9 stars from 127 reviews") in this file or on the website. Content on the site is general in nature and based on publicly available Vietnamese law and GDT practice.
 
 ## Convention
 

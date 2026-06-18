@@ -8,7 +8,7 @@ import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 export const metadata = buildPageMetadata({
   title: "Vietnam Tax Advisory — Accounting, Tax & CFO Advisory for Foreign Companies",
   description:
-    "Vietnam-based accounting, tax, payroll, transfer pricing, and CFO advisory for foreign investors, FDI companies, startups, and regional HQs. CIT 20% standard rate, VAT 10%, FCT for foreign contractors, transfer pricing under Decree 132/2020. English-speaking team with Big-4 heritage.",
+    "Vietnam-based accounting, tax, payroll, transfer pricing, and CFO advisory for foreign investors, FDI companies, startups, and regional HQs. CIT 20% standard rate, VAT 10%, FCT for foreign contractors, transfer pricing under Decree 132/2020.",
   path: "/",
   keywords: [
     "Vietnam accounting",
@@ -172,11 +172,11 @@ export default function HomePage() {
             <div className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-[12px] text-white/50 tracking-[0.08em] uppercase">
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold" aria-hidden />
-                MOF & GDT Registered
+                Vietnam-licensed tax agent
               </span>
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold" aria-hidden />
-                Big-4 Alumni Team
+                English-first reporting
               </span>
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold" aria-hidden />
@@ -210,7 +210,7 @@ export default function HomePage() {
       {/* TRUST STRIP */}
       <div className="bg-gold">
         <div className="container-page py-5 flex flex-wrap items-center justify-center gap-x-12 gap-y-3 text-navy">
-          {["MOF & GDT Registered", "Big-4 Alumni Team", "Bilingual EN / VI", "Dedicated Account Manager", "Cloud-Based Reporting"].map((t) => (
+          {["Vietnam-Licensed Tax Agent", "English-first reporting", "Bilingual EN / VI", "Fixed-fee engagements", "Cloud-based bookkeeping"].map((t) => (
             <div key={t} className="text-[12px] font-medium tracking-[0.1em] uppercase flex items-center gap-2">
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
                 <path d="M2 8l3.5 3.5L14 4" stroke="#0d1b2a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -274,7 +274,7 @@ export default function HomePage() {
                 { num: "01", title: "Built for FDI", desc: "We work with 100%-foreign-owned companies, holding structures, and regional HQs every day. We know the GDT's expectations and the traps that catch first-time entrants." },
                 { num: "02", title: "English-first reporting", desc: "Every financial statement, board pack, and filing is delivered in English. Your CFO and HQ get the clarity they need without translation overhead." },
                 { num: "03", title: "Fixed-fee transparency", desc: "A single monthly retainer covers the agreed scope. No hourly billing, no surprise invoices, no scope creep." },
-                { num: "04", title: "Real Vietnamese expertise", desc: "Our team includes former MoF auditors, Big-4 alumni, and licensed tax agents. When the GDT opens a file, we have done this before." },
+                { num: "04", title: "Vietnamese expertise", desc: "Vietnam-resident team working in VAS, Vietnamese tax law, and GDT practice day-to-day. We respond in English and Vietnamese." },
                 { num: "05", title: "Modern, cloud-based", desc: "Xero, QuickBooks, and other cloud platforms. You see live numbers from anywhere, in your currency, on your schedule." },
               ].map((item) => (
                 <div key={item.num} className="py-9 grid grid-cols-[60px_1fr] gap-6 hover:pl-2 transition-all">
@@ -299,8 +299,8 @@ export default function HomePage() {
                 </ul>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-gold text-navy p-7 rounded text-center hidden md:block">
-                <div className="font-serif text-[36px] font-light leading-none mb-1">10+</div>
-                <div className="text-[10px] font-medium tracking-[0.12em] uppercase">Years in practice</div>
+                <div className="font-serif text-[24px] font-light leading-tight mb-1 max-w-[180px]">GDT-registered tax agent</div>
+                <div className="text-[10px] font-medium tracking-[0.12em] uppercase mt-1">English-first reporting</div>
               </div>
             </div>
           </div>
