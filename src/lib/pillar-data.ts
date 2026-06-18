@@ -230,6 +230,14 @@ export const citPillar: PillarPageData = {
   relatedServices: allServices.slice(0, 6),
   countries,
   industries,
+  primarySources: [
+    { title: "Law on Corporate Income Tax (Law 32/2013/QH13)", citation: "National Assembly of Vietnam, Law No. 32/2013/QH13 dated 19 June 2013, as amended by Law 71/2014/QH13." },
+    { title: "Decree 218/2013/ND-CP", citation: "Government of Vietnam, Decree 218/2013/ND-CP dated 26 December 2013, implementing the Law on Corporate Income Tax." },
+    { title: "Circular 78/2014/TT-BTC", citation: "Ministry of Finance, Circular 78/2014/TT-BTC dated 18 June 2014, guiding CIT implementation." },
+    { title: "Decree 132/2020/ND-CP (Transfer Pricing)", citation: "Government of Vietnam, Decree 132/2020/ND-CP dated 5 November 2020, on transfer pricing, effective from 20 December 2020." },
+    { title: "Law on Investment 2020 (Law 61/2020/QH14)", citation: "National Assembly, Law 61/2020/QH14 dated 17 June 2020, including CIT incentive provisions for encouraged sectors and zones." },
+    { title: "General Department of Taxation", citation: "GDT website: https://www.gdt.gov.vn — official CIT guidance, return forms, and circular updates." },
+  ],
   datePublished: today,
   dateModified: today,
 };

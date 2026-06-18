@@ -26,7 +26,8 @@ const config: Config = {
         ink: {
           dark: "#1a1a1a",
           mid: "#4a4a4a",
-          muted: "#7a7a7a",
+          // Bumped from #7a7a7a to #5a5a5a for AA contrast on light backgrounds.
+          muted: "#5a5a5a",
         },
       },
       fontFamily: {

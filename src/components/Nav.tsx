@@ -34,7 +34,7 @@ export function Nav() {
         <Link
           href="/"
           className="font-serif text-[22px] font-medium text-white tracking-wide"
-          aria-label={`${siteConfig.name} home`}
+          aria-label={`${siteConfig.name} — home`}
         >
           {siteConfig.shortName}<span className="text-gold">.</span>
         </Link>

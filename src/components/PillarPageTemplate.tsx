@@ -25,6 +25,7 @@ export type PillarPageData = {
   relatedServices: { label: string; href: string }[];
   countries: { label: string; href: string }[];
   industries: { label: string; href: string }[];
+  primarySources?: { title: string; citation: string; url?: string }[];
   datePublished: string;
   dateModified?: string;
 };
@@ -137,6 +138,25 @@ export function PillarPage({ page }: { page: PillarPageData }) {
                 This guide is published by Vietnam Tax Advisory. It is general in nature and based on publicly available Vietnamese law and GDT practice as of {new Date(page.dateModified ?? page.datePublished).toLocaleDateString("en-SG", { year: "numeric", month: "long", day: "numeric" })}. It does not constitute professional tax or legal advice. For advice specific to your situation, contact us via the <a href="/contact" className="text-gold hover:underline">contact page</a>.
               </p>
             </section>
+
+            {page.primarySources && page.primarySources.length > 0 && (
+              <section id="primary-sources" className="not-prose border-t border-ivory-warm mt-10 pt-10">
+                <div className="text-[11px] tracking-[0.2em] uppercase text-gold mb-4">Primary sources cited in this guide</div>
+                <ul className="space-y-3">
+                  {page.primarySources.map((s, i) => (
+                    <li key={i} className="text-[14px] text-ink-mid leading-[1.7]">
+                      <span className="font-medium text-navy">{s.title}</span>
+                      <span className="block text-[13px] text-ink-muted mt-0.5">{s.citation}</span>
+                      {s.url && (
+                        <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-[13px] text-gold hover:underline mt-0.5 inline-block">
+                          Source link →
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </article>
 
           <aside className="lg:sticky lg:top-24 self-start space-y-6">

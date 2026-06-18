@@ -116,6 +116,21 @@ export default function ChecklistPage() {
                 </ul>
               </div>
             ))}
+
+            <div className="bg-ivory border border-ivory-warm p-6 mt-10">
+              <h3 className="font-serif text-[18px] font-medium text-navy mb-3">Primary sources cited in this checklist</h3>
+              <ul className="text-[12px] text-ink-muted space-y-1.5 leading-[1.6]">
+                <li>Law on CIT (Law 32/2013/QH13); Decree 218/2013/ND-CP; Circular 78/2014/TT-BTC</li>
+                <li>Law on VAT (Law 13/2008/QH12); Decree 209/2013/ND-CP; Circular 219/2013/TT-BTC</li>
+                <li>Law on PIT (Law 04/2007/QH12); Circular 111/2013/TT-BTC</li>
+                <li>Law on Social Insurance 2014 (Law 58/2014/QH13) and 2024 amendment (Law 41/2024/QH15)</li>
+                <li>Law on Tax Administration 2019 (Law 38/2019/QH14); Decree 126/2020/ND-CP</li>
+                <li>Decree 132/2020/ND-CP (Transfer Pricing); Circular 40/2021/TT-BTC</li>
+                <li>Circular 103/2014/TT-BTC (Foreign Contractor Tax)</li>
+                <li>Law on Investment 2020 (Law 61/2020/QH14); Law on Enterprises 2020 (Law 59/2020/QH14)</li>
+                <li>Decree 152/2020/ND-CP (Foreign Workers)</li>
+              </ul>
+            </div>
           </div>
           <aside className="lg:sticky lg:top-24 self-start">
             <ChecklistGate />
